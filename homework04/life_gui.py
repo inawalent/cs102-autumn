@@ -24,13 +24,13 @@ class GUI(UI):
         """Отобразить состояние клеток"""
         for i in range(self.life.rows):
             for j in range(self.life.cols):
-                color = pygame.Color('green') if self.life.curr_generation[i][j] == 1 else pygame.Color('black')
+                color = pygame.Color("green") if self.life.curr_generation[i][j] == 1 else pygame.Color("black")
                 pygame.draw.rect(
                     self.screen, color, (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size)
                 )
                 pygame.draw.rect(
                     self.screen,
-                    pygame.Color('white'),
+                    pygame.Color("white"),
                     (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size),
                     1
                 )
