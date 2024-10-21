@@ -16,7 +16,7 @@ class GameOfLife:
             size: tp.Tuple[int, int],
             randomize: bool = True,
             max_generations: tp.Optional[float] = float("inf"),
-    ) -> None:
+) -> None:
         # Размер клеточного поля
         self.rows, self.cols = size
         # Предыдущее поколение клеток
@@ -30,22 +30,22 @@ class GameOfLife:
 
     def create_grid(self, randomize: bool = False) -> Grid:
         """
-               Создание списка клеток.
+        Создание списка клеток.
 
-               Клетка считается живой, если ее значение равно 1, в противном случае клетка
-               считается мертвой, то есть, ее значение равно 0.
+        Клетка считается живой, если ее значение равно 1, в противном случае клетка
+        считается мертвой, то есть, ее значение равно 0.
 
-               Parameters
-               ----------
-               randomize : bool
-                   Если значение истина, то создается матрица, где каждая клетка может
-                   быть равновероятно живой или мертвой, иначе все клетки создаются мертвыми.
+        Parameters
+        ----------
+        randomize : bool
+        Если значение истина, то создается матрица, где каждая клетка может
+        быть равновероятно живой или мертвой, иначе все клетки создаются мертвыми.
 
-               Returns
-               ----------
-               out : Grid
-                   Матрица клеток размером `cell_height` х `cell_width`.
-               """
+        Returns
+        ----------
+        out : Grid
+        Матрица клеток размером `cell_height` х `cell_width`.
+        """
         grid = [[0] * self.cols for _ in range(self.rows)]
         if randomize:
             for i in range(self.rows):
@@ -128,7 +128,7 @@ class GameOfLife:
         """
         Прочитать состояние клеток из указанного файла.
         """
-        with open(filename, 'r') as f:
+        with open(filename, "r") as f:
             grid = [[int(char) for char in line.strip()] for line in f]
         size = len(grid), len(grid[0])
         print(grid)
@@ -140,6 +140,6 @@ class GameOfLife:
         """
         Сохранить текущее состояние клеток в указанный файл.
         """
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             for row in self.curr_generation:
                 f.write(''.join(map(str, row)) + '\n')
