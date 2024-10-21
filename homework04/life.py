@@ -12,11 +12,11 @@ Grid = tp.List[Cells]
 
 class GameOfLife:
     def __init__(
-            self,
-            size: tp.Tuple[int, int],
-            randomize: bool = True,
-            max_generations: tp.Optional[float] = float("inf"),
-) -> None:
+        self,
+        size: tp.Tuple[int, int],
+        randomize: bool = True,
+        max_generations: tp.Optional[float] = float("inf"),
+    ) -> None:
         # Размер клеточного поля
         self.rows, self.cols = size
         # Предыдущее поколение клеток
@@ -142,4 +142,4 @@ class GameOfLife:
         """
         with open(filename, "w") as f:
             for row in self.curr_generation:
-                f.write(''.join(map(str, row)) + '\n')
+                f.write("".join(map(str, row)) + "\n")

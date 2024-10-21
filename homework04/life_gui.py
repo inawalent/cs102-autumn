@@ -18,17 +18,22 @@ class GUI(UI):
         # Инициализация Pygame
         pygame.init()
         self.screen = pygame.display.set_mode(self.screen_size)
-        pygame.display.set_caption('Game of Life')
+        pygame.display.set_caption("Game of Life")
 
     def draw_grid(self) -> None:
-        """ Отобразить состояние клеток """
+        """Отобразить состояние клеток"""
         for i in range(self.life.rows):
             for j in range(self.life.cols):
                 color = pygame.Color('green') if self.life.curr_generation[i][j] == 1 else pygame.Color('black')
-                pygame.draw.rect(self.screen, color,
-                                 (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size))
-                pygame.draw.rect(self.screen, pygame.Color('white'),
-                                 (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size), 1)
+                pygame.draw.rect(
+                    self.screen, color, (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size)
+                )
+                pygame.draw.rect(
+                    self.screen,
+                    pygame.Color('white'),
+                    (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size),
+                    1
+                )
 
     def run(self) -> None:
         # Запуск pygame
@@ -55,7 +60,7 @@ class GUI(UI):
                 self.life.step()
 
             # Рисуем и делаем выбранную паузу, чтобы учесть скорость обновления картинки
-            self.screen.fill(pygame.Color('white'))
+            self.screen.fill(pygame.Color("white"))
             self.draw_grid()
             pygame.display.flip()
             clock.tick(self.speed)
