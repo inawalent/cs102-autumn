@@ -10,11 +10,11 @@ class Console(UI):
 
     @staticmethod
     def draw_borders(screen) -> None:
-        """ Отобразить рамку """
+        """ Отобразить рамку. """
         screen.border(0)
 
     def draw_grid(self, screen) -> None:
-        """ Отобразить состояние клеток """
+        """ Отобразить состояние клеток. """
         for i in range(self.life.rows):
             for j in range(self.life.cols):
                 if self.life.curr_generation[i][j] == 1:
@@ -23,9 +23,6 @@ class Console(UI):
                     screen.addch(i + 1, j + 1, ' ')
 
     def run(self) -> None:
-        """
-        Основной цикл программы.
-        """
         screen = curses.initscr()
         curses.curs_set(0)  # Отключить курсор
         screen.nodelay(True)  # Сделать ввод не блокирующим
@@ -44,9 +41,9 @@ class Console(UI):
 
                 # Обработка пользовательского ввода
                 event = screen.getch()
-                if event == ord('q'):
+                if event == ord("q"):
                     running = False  # Завершить игру
-                if event == ord('p'):
+                if event == ord("p"):
                     paused = not paused  # Поставить игру на паузу
 
                 if not paused:
