@@ -32,7 +32,7 @@ class GUI(UI):
                     self.screen,
                     pygame.Color("white"),
                     (j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size),
-                    1
+                    1,
                 )
 
     def run(self) -> None:
