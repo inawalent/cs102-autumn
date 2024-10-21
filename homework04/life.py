@@ -11,16 +11,22 @@ Grid = tp.List[Cells]
 
 
 class GameOfLife:
-    def __init__(self,
-                 size: tp.Tuple[int, int],
-                 randomize: bool = True,
-                 max_generations: tp.Optional[int] = None
-                 ) -> None:
+    def __init__(
+            self,
+            size: tp.Tuple[int, int],
+            randomize: bool = True,
+            max_generations: tp.Optional[float] = float("inf"),
+    ) -> None:
+        # Размер клеточного поля
         self.rows, self.cols = size
-        self.max_generations = max_generations
-        self.generations = 1
+        # Предыдущее поколение клеток
         self.prev_generation = self.create_grid()
+        # Текущее поколение клеток
         self.curr_generation = self.create_grid(randomize=randomize)
+        # Максимальное число поколений
+        self.max_generations = max_generations
+        # Текущее число поколений
+        self.generations = 1
 
     def create_grid(self, randomize: bool = False) -> Grid:
         """
@@ -97,7 +103,7 @@ class GameOfLife:
 
     def step(self) -> None:
         """
-        Сделать один шаг игры.
+        Выполнить один шаг игры.
         """
         self.prev_generation = self.curr_generation
         self.curr_generation = self.get_next_generation()
@@ -106,21 +112,21 @@ class GameOfLife:
     @property
     def is_changing(self) -> bool:
         """
-        Проверить, изменилось ли состояние клеток с прошлого поколения.
+        Не превысило ли текущее число поколений максимально допустимое.
         """
         return self.curr_generation != self.prev_generation
 
     @property
     def is_max_generations_exceeded(self) -> bool:
         """
-        Проверить, превышено ли максимальное число поколений.
+        Изменилось ли состояние клеток с предыдущего шага.
         """
         return self.max_generations is not None and self.generations >= self.max_generations
 
     @staticmethod
     def from_file(filename: str) -> "GameOfLife":
         """
-        Загрузить состояние клеток из файла.
+        Прочитать состояние клеток из указанного файла.
         """
         with open(filename, 'r') as f:
             grid = [[int(char) for char in line.strip()] for line in f]
@@ -132,7 +138,7 @@ class GameOfLife:
 
     def save(self, filename: str) -> None:
         """
-        Сохранить текущее состояние клеток в файл.
+        Сохранить текущее состояние клеток в указанный файл.
         """
         with open(filename, 'w') as f:
             for row in self.curr_generation:
